@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call([
             // MeasurementUnitSeeder::class,
-            ProductSeeder::class,
+            // ProductSeeder::class,
+            IngredientSeeder::class,
         ]);
     }
 }
