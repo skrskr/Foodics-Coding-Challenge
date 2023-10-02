@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             // MeasurementUnitSeeder::class,
             // ProductSeeder::class,
-            IngredientSeeder::class,
+            // IngredientSeeder::class,
+            ProductIngredientSeeder::class,
         ]);
     }
 }
