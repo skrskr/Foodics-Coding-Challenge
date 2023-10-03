@@ -59,6 +59,8 @@ return [
 
     'asset_url' => env('ASSET_URL'),
 
+    'merchant_email' => env('MERCHANT_EMAIL', 'info@merchant.com'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
