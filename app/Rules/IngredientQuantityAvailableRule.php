@@ -27,7 +27,7 @@ class IngredientQuantityAvailableRule implements ValidationRule
             $ingredients = Ingredient::whereIn("id", $ingredientIds)->get(['id', 'available_quantity_in_grams']);
             foreach ($ingredients as $ingredient) {
                 if ($ingredient->available_quantity_in_grams < ($productIngredients[$ingredient->id] * $quanity)) {
-                    $fail('The :attribute is not available.');
+                    $fail('The required quantity of this product is not available.');
                 }
             }
 
