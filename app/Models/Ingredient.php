@@ -19,5 +19,6 @@ class Ingredient extends Model
        'stock_capacity_in_grams',
        'available_quantity_in_grams',
        'measurement_unit_id',
+       'is_merchant_notified',
    ];
 }
