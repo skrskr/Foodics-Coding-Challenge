@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Jobs\SendNotificationEmailToMerchantJob;
 use App\Models\Ingredient;
 use App\Models\Order;
 use App\Models\OrderProduct;
@@ -82,7 +83,8 @@ class OrderService
             foreach ($ingredientIds as $ingredientId) {
                 Ingredient::where("id", $ingredientId)->decrement('available_quantity_in_grams', ($item['quantity'] * $productIngredients[$ingredientId]));
             }
-            // TODO:: dispatch job to send email notification if ingredient quantity less than 50%
+            // dispatch job to send notification mail to merchant if any ingredients quantity is less than 50%
+            SendNotificationEmailToMerchantJob::dispatch($ingredientIds);
         }
     }
 }
