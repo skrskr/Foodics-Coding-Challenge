@@ -36,12 +36,16 @@ class SendNotificationEmailToMerchantJob implements ShouldQueue
         foreach ($ingredients as $ingredient) {
             $quanityPercentage = ($ingredient->available_quantity_in_grams / $ingredient->stock_capacity_in_grams) * 100;
 
-            if ($quanityPercentage < 50) {
+            if ($quanityPercentage < 50 && !$ingredient->is_merchant_notified) {
                 $mailData = [
                     "name" => $ingredient->name,
                     "percentage" => $quanityPercentage
                 ];
                 Mail::to([$merchantEmail])->send(new IngredientQuantityAlertMail($mailData));
+                
+                $ingredient->update([
+                    'is_merchant_notified' => true
+                ]);
             }
         }
     }
