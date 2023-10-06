@@ -66,3 +66,11 @@ make seed
 ```bash
 curl -X POST -H "Content-Type: application/json" -d '{"products":[{"product_id": 1, "quantity": 1}]}' http://localhost:8000/api/v1/orders
 ```
+
+- 8. Runing test
+```bash
+# Using make 
+make test
+# docker command
+# docker compose -f local.yml run --rm app php artisan test
+```

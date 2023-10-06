@@ -13,3 +13,6 @@ migrate:
 
 seed:
 	docker compose -f local.yml run --rm app php artisan db:seed
+
+test:
+	docker compose -f local.yml run --rm app php artisan test
