@@ -42,19 +42,15 @@ MERCHANT_EMAIL="merchant@foodics.com"
 make dev
 # docker command
 # docker compose -f local.yml up
+# if you have issues stop containers and up again
+# Key not exist in .env and not reflected
+make dev_down
+make dev
 ```
 - The project will up and running on port `8000` http://localhost:8000
 - The mailhog service will be up and running on port `8025` http://localhost:8025
 
-- 5. Migrate database
-```bash
-# Using make 
-make migrate
-# docker command
-# docker compose -f local.yml run --rm app php artisan migrate
-```
-
-- 6. Seeding data in database
+- 5. Seeding data in database
 ```bash
 # Using make 
 make seed
@@ -62,12 +58,12 @@ make seed
 # docker compose -f local.yml run --rm app php artisan db:seed
 ```
 
-- 7. Creating order using `curl` command line
+- 6. Creating order using `curl` command line
 ```bash
 curl -X POST -H "Content-Type: application/json" -d '{"products":[{"product_id": 1, "quantity": 1}]}' http://localhost:8000/api/v1/orders
 ```
 
-- 8. Runing test
+- 7. Runing test
 ```bash
 # Using make 
 make test
