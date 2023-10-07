@@ -74,7 +74,7 @@ class OrderTest extends TestCase
         $response->assertStatus(201);
         $this->assertEquals(1, Order::count());
         
-        $ingredients = Ingredient::where("product_id", $this->product->id)->get();
+        $ingredients = Ingredient::whereIn("id", $ingredientIds)->get();
 
         foreach($ingredients as $index => $ingredient) {
             $this->assertEquals($ingredientExpectedQuantities[$index], $ingredient->available_quantity_in_grams);
