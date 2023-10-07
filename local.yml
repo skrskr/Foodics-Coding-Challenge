@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 services:
   app:
     image: foodics-task
@@ -13,10 +13,10 @@ services:
       - "8000:8000"
     volumes:
       - ./:/home/web/www
-    links:
+    depends_on:
       - db
       - redis
-  
+
   worker:
     image: foodics-task
     container_name: foodics-task-worker
@@ -25,12 +25,11 @@ services:
       context: ./
       dockerfile: ./docker/Dockerfile
     env_file: .env
-    command: php artisan queue:work 
+    command: php artisan queue:work
     volumes:
       - ./:/home/web/www
-    links:
-      - redis
-      - db
+    depends_on:
+      - app
 
   db:
     image: "mysql:8.1"
@@ -79,5 +78,4 @@ services:
 volumes:
   dbdata:
   dbsocket:
-  uploads:
   redisdata:

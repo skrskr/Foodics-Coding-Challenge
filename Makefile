@@ -9,10 +9,10 @@ dev_down:
 	docker compose -f local.yml down
 
 migrate:
-	docker compose -f local.yml run --rm app php artisan migrate
+	docker compose -f local.yml run --rm worker php artisan migrate
 
 seed:
-	docker compose -f local.yml run --rm app php artisan db:seed
+	docker compose -f local.yml run --rm worker php artisan db:seed
 
 test:
-	docker compose -f local.yml run --rm app php artisan test
+	docker compose -f local.yml run --rm worker php artisan test
