@@ -5,15 +5,14 @@ services:
     container_name: foodics-task-app
     restart: unless-stopped
     build:
-      args:
-        user: www-user
-        uid: 1000
       context: ./
-      dockerfile: ./Dockerfile
+      dockerfile: ./docker/Dockerfile
+    entrypoint: /entrypoint.sh
     env_file: .env
+    ports:
+      - "8000:8000"
     volumes:
       - ./:/home/web/www
-      - uploads:/home/web/www/public/media
     links:
       - db
       - redis
@@ -23,16 +22,12 @@ services:
     container_name: foodics-task-worker
     restart: unless-stopped
     build:
-      args:
-        user: www-user
-        uid: 1000
       context: ./
-      dockerfile: ./Dockerfile
+      dockerfile: ./docker/Dockerfile
     env_file: .env
     command: php artisan queue:work 
     volumes:
       - ./:/home/web/www
-      - uploads:/home/web/www/public/media
     links:
       - redis
       - db
@@ -51,19 +46,19 @@ services:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_PASSWORD: ${DB_PASSWORD}
 
-  nginx:
-    container_name: foodics-task-nginx
-    build:
-      context: ./
-      dockerfile: ./web.dockerfile
-    volumes:
-      - ./public:/home/web/www/public/
-      - uploads:/home/web/www/public/media
-      - ./nginx/foodics-task.docker.nginx.conf:/etc/nginx/conf.d/default.conf
-    ports:
-      - 8000:80
-    links:
-      - app
+  # nginx:
+  #   container_name: foodics-task-nginx
+  #   build:
+  #     context: ./
+  #     dockerfile: ./web.dockerfile
+  #   volumes:
+  #     - ./public:/home/web/www/public/
+  #     - uploads:/home/web/www/public/media
+  #     - ./nginx/foodics-task.docker.nginx.conf:/etc/nginx/conf.d/default.conf
+  #   ports:
+  #     - 8000:80
+  #   links:
+  #     - app
 
   mailhog:
     image: mailhog/mailhog
