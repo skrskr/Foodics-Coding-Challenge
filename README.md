@@ -6,6 +6,10 @@
 - Mysql 8
 - Redis 7
 
+## Notes
+- I will keep all quanities and amounts in grams the smallest unit and add unit with it's rate to ingredient and i will convert `amount_in_grams` to it's unit while retrieving data.
+- For sending notification email once, i used flag `is_merchant_notified` by default `false` when the quanitiy is less than 50%, i will send email and set flag to `true`, When new ingredient quanities added and greater than 50%, i will set `is_merchant_notified` to `false` again
+
 ## Installation
 - 1. Clone Repo from github
 ```bash
