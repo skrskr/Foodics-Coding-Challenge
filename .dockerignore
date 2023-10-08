@@ -1,0 +1,57 @@
+# Ignore vendor directory (dependencies)
+/vendor
+
+# Ignore node_modules directory (if you are using Node.js)
+/node_modules
+
+# Ignore .git directory (if you are not using a separate .git repo for Docker)
+.git
+
+# Ignore .env files (sensitive configuration)
+.env
+.env.*
+
+# Ignore storage files (temporary files and logs)
+/storage/*.log
+/storage/app/public
+/storage/framework/cache
+/storage/framework/sessions
+/storage/framework/testing
+/storage/framework/views
+/storage/logs
+
+# Ignore composer.lock (to prevent re-downloading dependencies during every build)
+composer.lock
+
+# Ignore database files (SQLite or other database files)
+/database/*.sqlite
+/database/*.sqlite3
+/database/*.db
+
+# Ignore Docker-specific files (Dockerfile, docker-compose.yml, etc.)
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Ignore development files and directories
+/tests
+/phpunit.xml
+/phpunit.xml.dist
+/phpunit.result.cache
+/nova
+
+# Ignore local development environment files
+Homestead.json
+Homestead.yaml
+/.idea
+
+# Ignore PHPStorm configuration files (if you use PHPStorm)
+/.phpstorm.meta.php
+/.phpstorm.project.iml
+
+# Ignore various OS and text editor temporary files
+Thumbs.db
+.DS_Store
+.idea
+.vscode
+.phpunit.result.cache
