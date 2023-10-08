@@ -62,7 +62,7 @@ make seed
 # docker compose -f local.yml run --rm worker php artisan db:seed
 ```
 
-- 6. Creating order using `curl` command line
+- 6. Creating order using `curl` command line or from postman (postman collection attached in `docs` folder)
 ```bash
 curl -X POST -H "Content-Type: application/json" -d '{"products":[{"product_id": 1, "quantity": 1}]}' http://localhost:8000/api/v1/orders
 
