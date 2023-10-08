@@ -18,7 +18,7 @@ class IngredientQuantityAvailableRule implements ValidationRule
     {
         foreach($value as $productItem) {
             $productId = $productItem['product_id'];
-            $quanity = $productItem['quantity'];
+            $quantity = $productItem['quantity'];
 
             $productIngredients = ProductIngredient::where("product_id", $productId)->pluck('amount_in_grams','ingredient_id')->toArray();
          
@@ -26,7 +26,7 @@ class IngredientQuantityAvailableRule implements ValidationRule
          
             $ingredients = Ingredient::whereIn("id", $ingredientIds)->get(['id', 'available_quantity_in_grams']);
             foreach ($ingredients as $ingredient) {
-                if ($ingredient->available_quantity_in_grams < ($productIngredients[$ingredient->id] * $quanity)) {
+                if ($ingredient->available_quantity_in_grams < ($productIngredients[$ingredient->id] * $quantity)) {
                     $fail('The required quantity of this product is not available.');
                 }
             }

@@ -28,11 +28,11 @@ class OrderTest extends TestCase
     }
 
     /**
-     * A Test order created succssfully
+     * A Test order created successfully
      */
     public function test_order_stored_successfully(): void
     {
-        $ingredientIds = $this->createIngredients(ingredintsStockCapcity: [500, 1000, 1500]);
+        $ingredientIds = $this->createIngredients(ingredientsStockCapacity: [500, 1000, 1500]);
 
         $this->createProductIngredients(ingredientIds: $ingredientIds, productIngredientAmounts: [50, 400, 500]);
         
@@ -51,11 +51,11 @@ class OrderTest extends TestCase
     }
 
     /**
-     * A Test order created succssfully
+     * A Test order created successfully
      */
     public function test_ingredient_stock_updated_successfully(): void
     {
-        $ingredientIds = $this->createIngredients(ingredintsStockCapcity: [500, 1000, 1500]);
+        $ingredientIds = $this->createIngredients(ingredientsStockCapacity: [500, 1000, 1500]);
 
         $this->createProductIngredients(ingredientIds: $ingredientIds, productIngredientAmounts: [50, 400, 500]);
         
@@ -91,14 +91,14 @@ class OrderTest extends TestCase
         return Product::factory()->create();
     }
 
-    private function createIngredients(array $ingredintsStockCapcity): array
+    private function createIngredients(array $ingredientsStockCapacity): array
     {
         $ingredientIds = [];
-        for($i = 0; $i < count($ingredintsStockCapcity); $i++) {
+        for($i = 0; $i < count($ingredientsStockCapacity); $i++) {
             $ingredient = Ingredient::factory()->create([
                 'measurement_unit_id' => $this->unit->id,
-                'stock_capacity_in_grams' => $ingredintsStockCapcity[$i],
-                'available_quantity_in_grams' => $ingredintsStockCapcity[$i],
+                'stock_capacity_in_grams' => $ingredientsStockCapacity[$i],
+                'available_quantity_in_grams' => $ingredientsStockCapacity[$i],
             ]);
             array_push($ingredientIds, $ingredient->id);
         }

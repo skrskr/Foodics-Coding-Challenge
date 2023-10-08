@@ -26,7 +26,7 @@ class OrderService
     
             $this->createOrderProducts($order, $orderData, $products);
             
-            $this->decreamentProductIngredientsQuantity($orderData);
+            $this->decrementProductIngredientsQuantity($orderData);
            
             DB::commit();
 
@@ -73,7 +73,7 @@ class OrderService
         OrderProduct::insert($orderProducts);
     }
 
-    private function decreamentProductIngredientsQuantity(array $orderData): void
+    private function decrementProductIngredientsQuantity(array $orderData): void
     {
         foreach ($orderData["products"] as $item) {
             $productId = $item['product_id'];
